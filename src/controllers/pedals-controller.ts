@@ -9,6 +9,13 @@ async function getPedals(req: Request, res: Response){
     res.status(200).send(result.rows)
 }
 
+async function getOne(req: Request, res: Response){
+    const { id } = req.params
+
+    const result = await pedalRepository.getById(id)
+    res.status(200).send(result.rows)
+}
+
 async function postPedal(req: Request, res: Response){
     const newPedal = req.body as Pedal
 
@@ -20,10 +27,12 @@ async function postPedal(req: Request, res: Response){
     }
 
     const result = await pedalRepository.addPedal(newPedal)
-    return res.status(201).send(`Pedal inserted ${result.rowCount}`)
+    //saleRepository.addStock(newPedal.quantity, result.rows[0])
+    res.status(201).send(`Pedal inserted ${result.rowCount}`)
 }
 
 export {
     getPedals,
+    getOne,
     postPedal
 }

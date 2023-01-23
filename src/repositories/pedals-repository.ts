@@ -8,6 +8,14 @@ async function getAll(): Promise<QueryResult<any>>{
     );
 }
 
+async function getById(id: string): Promise<QueryResult<any>>{
+    return connection.query(
+        `SELECT * FROM pedals
+        WHERE id = $1`,
+        [id]
+    );
+}
+
 async function addPedal(pedal: Pedal): Promise<QueryResult>{
     return connection.query(
         `INSERT INTO pedals (model, brand, value, is_avaiable) 
@@ -20,6 +28,7 @@ async function addPedal(pedal: Pedal): Promise<QueryResult>{
 
 const pedalRepository = {
     getAll,
+    getById,
     addPedal
 }
 
