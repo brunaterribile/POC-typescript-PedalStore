@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
-import pedalRepository from "../repositories/pedals-repository.js";
 import saleRepository from "../repositories/sales-repository.js"
 
 async function postSale(req: Request, res: Response) {
-    const { id }  = req.params
+    const { id } = req.params
     const { customer } =  req.body
 
     saleRepository.updateStock(id)
@@ -23,8 +22,17 @@ async function getRanking(req: Request, res: Response) {
     res.status(200).send(result.rows)
 }
 
+async function deleteSale(req: Request, res: Response) {
+    const { date } = req.headers
+    const { customer } =  req.headers
+
+    const result = await saleRepository.cancelSale(customer, date)
+    res.status(200).send(`Sale deleted ${result.rowCount}`)
+}
+
 export {
     postSale,
     getAllSales,
-    getRanking
+    getRanking,
+    deleteSale
 }

@@ -28,7 +28,7 @@ async function getRank(): Promise<QueryResult<any>>{
     );
 }
 
-async function addStock(id: string, quantity: any){
+async function addStock(id: string, quantity: number): Promise<QueryResult>{
     return connection.query(
         `INSERT INTO stock (pedal_id, quantity)
         VALUES ($1, $2)`,
@@ -36,11 +36,19 @@ async function addStock(id: string, quantity: any){
     )
 }
 
-async function updateStock(id: string){
+async function updateStock(id: string): Promise<QueryResult>{
     return connection.query(
         `UPDATE stock SET quantity = quantity -1
         WHERE pedal_id = $1`,
         [id]
+    )
+}
+
+async function cancelSale(customer: string[] | string, date: string): Promise<QueryResult>{
+    return connection.query(
+        `DELETE FROM sales
+        WHERE customer = $1 AND sale_date = $2`,
+        [customer, date]
     )
 }
 
@@ -49,7 +57,8 @@ const saleRepository = {
     addSale,
     getRank,
     addStock,
-    updateStock
+    updateStock,
+    cancelSale
 }
 
 export default saleRepository;
