@@ -5,7 +5,7 @@ const connection = new Pool ({
     host: 'localhost',
     port: 5432,
     user: 'postgres',
-    password: 'root',
+    password: 'driven2022',
     database: 'pedalstore'
 })
 
