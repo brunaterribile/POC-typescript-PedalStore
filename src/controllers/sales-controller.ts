@@ -4,7 +4,7 @@ import saleRepository from "../repositories/sales-repository.js"
 
 async function postSale(req: Request, res: Response) {
     const { id }  = req.params
-    const customer: string =  req.body
+    const { customer } =  req.body
 
     saleRepository.updateStock(id)
     const result = await saleRepository.addSale(id, customer)

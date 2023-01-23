@@ -18,10 +18,10 @@ async function getById(id: string): Promise<QueryResult<any>>{
 
 async function addPedal(pedal: Pedal): Promise<QueryResult>{
     return connection.query(
-        `INSERT INTO pedals (model, brand, value, is_avaiable) 
-        VALUES ($1, $2, $3, $4)
+        `INSERT INTO pedals (model, brand, value) 
+        VALUES ($1, $2, $3)
         RETURNING id`,
-        [pedal.model, pedal.brand, pedal.value, true]
+        [pedal.model, pedal.brand, pedal.value]
     );
 }
 
