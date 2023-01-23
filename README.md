@@ -1,6 +1,6 @@
 # POC-typescript
 
-PedalStore é uma aplicação que permite o registro de vendas de pedais de efeito para guitarra. Contempla três entidades relacionadas: pedals, stock e sales.
+## PedalStore é uma aplicação que permite o registro de vendas de pedais de efeito para guitarra. Contempla três entidades relacionadas: pedals, stock e sales.
 
 __________________________________________________________
 
@@ -23,3 +23,14 @@ DELETE:  /sales - cancela a venda selecionada
          "date": 2023-01-23}
 
 GET:  /sales/ranking - lista os pedais mais vendidos
+
+________________________________________________________
+
+### Conceitos aprendidos:
+
+1. Tipos primitivos e inferência de tipos
+2. Operador Union (|)
+3. Protocols e alias (as)
+4. Validação com Joi
+5. Generics
+6. Utility types (omit e partial) 
