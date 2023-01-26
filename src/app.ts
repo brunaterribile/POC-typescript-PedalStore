@@ -1,11 +1,13 @@
 import express from 'express';
 import { getOne, getPedals, postPedal } from './controllers/pedals-controller.js'
 import { postSale, getAllSales, getRanking, deleteSale } from './controllers/sales-controller.js';
+import validatePedal from './middlewares/validate-pedal-schema.js';
+import { PedalSchema } from './schemas/pedal-schema.js';
 
 const server = express();
 server.use(express.json())
 
-server.post('/pedals', postPedal)
+server.post('/pedals', validatePedal(PedalSchema), postPedal)
 server.get('/pedals', getPedals)
 server.get('/pedals/:id', getOne)
 

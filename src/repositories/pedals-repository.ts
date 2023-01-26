@@ -8,7 +8,7 @@ async function getAll(): Promise<QueryResult<any>>{
     );
 }
 
-async function getById(id: string): Promise<QueryResult<any>>{
+async function getById(id: number): Promise<QueryResult<any>>{
     return connection.query(
         `SELECT * FROM pedals
         WHERE id = $1`,
