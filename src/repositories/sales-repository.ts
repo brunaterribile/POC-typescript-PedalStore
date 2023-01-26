@@ -7,7 +7,7 @@ async function getAll(): Promise<QueryResult<any>>{
     );
 }
 
-async function addSale(id: string, customer: string): Promise<QueryResult>{
+async function addSale(id: number, customer: string): Promise<QueryResult>{
     return connection.query(
         `INSERT INTO sales (pedal_id, customer) 
         VALUES ($1, $2)`,
@@ -28,7 +28,7 @@ async function getRank(): Promise<QueryResult<any>>{
     );
 }
 
-async function addStock(id: string, quantity: number): Promise<QueryResult>{
+async function addStock(id: number, quantity: number): Promise<QueryResult>{
     return connection.query(
         `INSERT INTO stock (pedal_id, quantity)
         VALUES ($1, $2)`,
@@ -36,7 +36,7 @@ async function addStock(id: string, quantity: number): Promise<QueryResult>{
     )
 }
 
-async function updateStock(id: string): Promise<QueryResult>{
+async function updateStock(id: number): Promise<QueryResult>{
     return connection.query(
         `UPDATE stock SET quantity = quantity -1
         WHERE pedal_id = $1`,
@@ -45,7 +45,6 @@ async function updateStock(id: string): Promise<QueryResult>{
 }
 
 async function cancelSale(id: string | string[]): Promise<QueryResult>{
-    console.log(id)
     return connection.query(
         `DELETE FROM sales
         WHERE id = $1`,

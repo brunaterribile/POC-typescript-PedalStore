@@ -1,31 +1,28 @@
 import { Request, Response } from "express";
-import saleRepository from "../repositories/sales-repository.js"
+import saleService from "../services/sales-service.js";
 
 async function postSale(req: Request, res: Response) {
-    const { id } = req.params
+    const id = parseInt(req.params.id)
     const { customer } =  req.body
 
-    saleRepository.updateStock(id)
-    const result = await saleRepository.addSale(id, customer)
+    const result = await saleService.createSale(id, customer)
     res.status(201).send(`Sale inserted ${result.rowCount}`)
 }
 
 async function getAllSales(req: Request, res: Response) {
-    
-    const result = await saleRepository.getAll()
-    res.status(200).send(result.rows)
+    const sales = await saleService.getSales()
+    res.status(200).send(sales)
 }
 
 async function getRanking(req: Request, res: Response) {
-    
-    const result = await saleRepository.getRank()
-    res.status(200).send(result.rows)
+    const rank = await saleService.getSalesRank()
+    res.status(200).send(rank)
 }
 
 async function deleteSale(req: Request, res: Response) {
     const { id } = req.headers
 
-    const result = await saleRepository.cancelSale(id)
+    const result = await saleService.deleteOne(id)
     res.status(200).send(`Sale deleted ${result.rowCount}`)
 }
 
