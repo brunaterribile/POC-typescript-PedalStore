@@ -23,10 +23,9 @@ async function getRanking(req: Request, res: Response) {
 }
 
 async function deleteSale(req: Request, res: Response) {
-    const { date } = req.headers
-    const { customer } =  req.headers
+    const { id } = req.headers
 
-    const result = await saleRepository.cancelSale(customer, date)
+    const result = await saleRepository.cancelSale(id)
     res.status(200).send(`Sale deleted ${result.rowCount}`)
 }
 

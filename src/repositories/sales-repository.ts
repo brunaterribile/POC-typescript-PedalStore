@@ -44,11 +44,12 @@ async function updateStock(id: string): Promise<QueryResult>{
     )
 }
 
-async function cancelSale(customer: string[] | string, date: string): Promise<QueryResult>{
+async function cancelSale(id: string | string[]): Promise<QueryResult>{
+    console.log(id)
     return connection.query(
         `DELETE FROM sales
-        WHERE customer = $1 AND sale_date = $2`,
-        [customer, date]
+        WHERE id = $1`,
+        [id]
     )
 }
 
