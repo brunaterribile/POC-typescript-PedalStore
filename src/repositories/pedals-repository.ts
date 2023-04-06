@@ -1,14 +1,14 @@
 import { connection } from "../database/database.js";
-import Pedal from "../protocols/pedal.js";
 import { QueryResult } from "pg";
+import { Pedal, PedalEntity } from "../protocols/Pedal.js";
 
-async function getAll(): Promise<QueryResult<any>>{
+async function getAll(): Promise<QueryResult<PedalEntity>>{
     return connection.query(
         `SELECT * FROM pedals`
     );
 }
 
-async function getById(id: number): Promise<QueryResult<any>>{
+async function getById(id: number): Promise<QueryResult<PedalEntity>>{
     return connection.query(
         `SELECT * FROM pedals
         WHERE id = $1`,

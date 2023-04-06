@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
-import Pedal from "../protocols/pedal.js";
 import pedalService from "../services/pedal-service.js";
+import { Pedal } from "../protocols/Pedal.js";
 
 async function getPedals(req: Request, res: Response){
-
     const pedals = await pedalService.getAllPedals()
     res.status(200).send(pedals)
 }

@@ -1,4 +1,4 @@
-import Pedal from "../protocols/pedal.js";
+import { Pedal } from "../protocols/Pedal.js";
 import pedalRepository from "../repositories/pedals-repository.js";
 import saleRepository from "../repositories/sales-repository.js";
 

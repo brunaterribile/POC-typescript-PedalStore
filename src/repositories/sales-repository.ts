@@ -1,7 +1,8 @@
 import { connection } from "../database/database.js";
 import { QueryResult } from "pg";
+import SaleEntity from "../protocols/Sale.js";
 
-async function getAll(): Promise<QueryResult<any>>{
+async function getAll(): Promise<QueryResult<SaleEntity>>{
     return connection.query(
         `SELECT * FROM sales`
     );
@@ -15,7 +16,7 @@ async function addSale(id: number, customer: string): Promise<QueryResult>{
     );
 }
 
-async function getRank(): Promise<QueryResult<any>>{
+async function getRank(): Promise<QueryResult>{
     return connection.query(
         `SELECT p.brand, p.model, 
         COUNT(s.pedal_id) as "Total Sales", 
